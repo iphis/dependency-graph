@@ -1,0 +1,14 @@
+{
+  "name": "iphis/dependency-graph",
+  "require": {
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "autoload": {
+    "psr-0": {
+      "": "src"
+    }
+  },
+  "minimum-stability": "stable"
+}
