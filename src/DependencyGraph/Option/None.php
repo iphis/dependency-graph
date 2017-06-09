@@ -8,14 +8,12 @@ use iphis\DependencyGraph\Either\Left;
 use iphis\DependencyGraph\Either\Right;
 
 /**
- * Class None
- *
- * @package PlasmaConduit\option
+ * Class None.
  */
 class None implements OptionInterface
 {
     /**
-     * This constructor does absolutely nothing
+     * This constructor does absolutely nothing.
      */
     public function __construct()
     { /**/
@@ -53,16 +51,17 @@ class None implements OptionInterface
      */
     public function get()
     {
-        throw new Exception("None#get() should never be called");
+        throw new Exception('None#get() should never be called');
     }
 
     /**
      * This function will return the wrapped value if the `Option` type is
      * `Some` and if it's `None` it will return `$default` instead. Seeing how
-     * this is the `None` class, this will always return the `$default`
+     * this is the `None` class, this will always return the `$default`.
      *
      * @param mixed $default - The default value if no value is present
-     * @return mixed         - The `$default` value
+     *
+     * @return mixed - The `$default` value
      */
     public function getOrElse($default)
     {
@@ -79,9 +78,11 @@ class None implements OptionInterface
      * However, this is the `None` class so it will always return
      * the evaluated `$alternative`.
      *
-     * @param Callable|OptionInterface $alternative - The alternative Option
-     * @return OptionInterface                      - Always returns `$alternative`
+     * @param callable|OptionInterface $alternative - The alternative Option
+     *
      * @throws Exception
+     *
+     * @return OptionInterface - Always returns `$alternative`
      */
     public function orElse($alternative)
     {
@@ -97,7 +98,7 @@ class None implements OptionInterface
             $evaluated = $alternative();
             if (!($evaluated instanceof OptionInterface)) {
                 throw new Exception(
-                    "Result of alternative must return an `Option` type"
+                    'Result of alternative must return an `Option` type'
                 );
             }
 
@@ -109,20 +110,20 @@ class None implements OptionInterface
      * For those moments when you just need either a value or null. This
      * function returns the wrapped value when called on the `Some` class and
      * returns null when called on the `None` class. This is the `None` class
-     * so it will always return null
+     * so it will always return null.
      *
      * @return null - Always null
      */
     public function orNull()
     {
-        return null;
     }
 
     /**
      * This returns the evaluated value of `$right` as a `Right` projection.
      *
      * @param callable|mixed $right - The alternative `Right` value
-     * @return EitherInterface               - The alternative `Right` value
+     *
+     * @return EitherInterface - The alternative `Right` value
      */
     public function toLeft($right)
     {
@@ -136,8 +137,9 @@ class None implements OptionInterface
     /**
      * This returns the evaluated value of `$left` as a `Left` projection.
      *
-     * @param Callable|mixed $left - The alternative `Left` value
-     * @return EitherInterface               - The alternative `Left` value
+     * @param callable|mixed $left - The alternative `Left` value
+     *
+     * @return EitherInterface - The alternative `Left` value
      */
     public function toRight($left)
     {
@@ -158,9 +160,11 @@ class None implements OptionInterface
      * class, so it will never call the `$mapper` and will return `None`
      * immediately.
      *
-     * @param Callable $mapper - Function to disregard
-     * @return OptionInterface          - Always `None`
+     * @param callable $mapper - Function to disregard
+     *
      * @throws Exception
+     *
+     * @return OptionInterface - Always `None`
      */
     public function map($mapper)
     {
@@ -175,9 +179,11 @@ class None implements OptionInterface
      * This takes a callable and completely disregards it, returning `None`
      * immediately.
      *
-     * @param Callable $flatMapper
-     * @return $this|OptionInterface
+     * @param callable $flatMapper
+     *
      * @throws \Exception
+     *
+     * @return $this|OptionInterface
      */
     public function flatMap($flatMapper)
     {
@@ -190,11 +196,13 @@ class None implements OptionInterface
 
     /**
      * This function takes a callable as a predicate, disregards it and returns
-     * `None` immediately
+     * `None` immediately.
      *
-     * @param Callable $predicate
-     * @return $this|OptionInterface
+     * @param callable $predicate
+     *
      * @throws \Exception
+     *
+     * @return $this|OptionInterface
      */
     public function filter($predicate)
     {

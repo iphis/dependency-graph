@@ -52,10 +52,10 @@ class DependencyGraph
 
                 return new Right(true);
             } else {
-                throw new NoParentException("Parent node not present in graph.");
+                throw new NoParentException('Parent node not present in graph.');
             }
         } else {
-            throw new CircularDependencyException("Refusing to add circular dependency.");
+            throw new CircularDependencyException('Refusing to add circular dependency.');
         }
     }
 
@@ -80,6 +80,6 @@ class DependencyGraph
     ) {
         $node = $this->_registry->get($node->getName());
 
-        return ($node->nonEmpty() && $node->get()->hasDependency($parent));
+        return $node->nonEmpty() && $node->get()->hasDependency($parent);
     }
 }

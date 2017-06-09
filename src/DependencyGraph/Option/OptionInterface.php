@@ -5,9 +5,7 @@ namespace iphis\DependencyGraph\Option;
 use Exception;
 
 /**
- * Class Option
- *
- * @package PlasmaConduit\option
+ * Class Option.
  */
 interface OptionInterface
 {
@@ -27,9 +25,10 @@ interface OptionInterface
 
     /**
      * This returns the wrapped value. Throws when called on `None`.
-     * So the convention goes, this should never be called on `None`
+     * So the convention goes, this should never be called on `None`.
      *
      * @throws Exception
+     *
      * @return mixed
      */
     public function get();
@@ -39,7 +38,8 @@ interface OptionInterface
      * `Some` and if it's `None` it will return `$default` instead.
      *
      * @param mixed $default - The default value if no value is present
-     * @return mixed         - The wrapped value or the supplied default
+     *
+     * @return mixed - The wrapped value or the supplied default
      */
     public function getOrElse($default);
 
@@ -47,8 +47,9 @@ interface OptionInterface
      * This function takes an alternative `Option` type or callable and if
      * this `Option` type is `None` it returns the evaluated alternative type.
      *
-     * @param Callable|OptionInterface $alternative - The alternative Option
-     * @return OptionInterface                      - Itself or the alternative
+     * @param callable|OptionInterface $alternative - The alternative Option
+     *
+     * @return OptionInterface - Itself or the alternative
      */
     public function orElse($alternative);
 
@@ -66,8 +67,9 @@ interface OptionInterface
      * `Some. Otherwise it returns a `Right` projection containing the
      * evaluated value of `$right`.
      *
-     * @param Callable|mixed $right - The alternative `Right` projection
-     * @return \iphis\DependencyGraph\Either\EitherInterface               - The projected `Either` value
+     * @param callable|mixed $right - The alternative `Right` projection
+     *
+     * @return \iphis\DependencyGraph\Either\EitherInterface - The projected `Either` value
      */
     public function toLeft($right);
 
@@ -76,8 +78,9 @@ interface OptionInterface
      * `Some. Otherwise it returns a `Left` projection containing the
      * evaluated value of `$left`.
      *
-     * @param Callable|mixed $left - The alternative `Left` projection
-     * @return \iphis\DependencyGraph\Either\EitherInterface              - The projected `Either` value
+     * @param callable|mixed $left - The alternative `Left` projection
+     *
+     * @return \iphis\DependencyGraph\Either\EitherInterface - The projected `Either` value
      */
     public function toRight($left);
 
@@ -89,8 +92,9 @@ interface OptionInterface
      * this is called on a `None` container, the function `$mapper` will never
      * be called and instead we return `None` immediately.
      *
-     * @param Callable $mapper - Function to call on the wrapped value
-     * @return OptionInterface          - The newly produced `Some` or `None`
+     * @param callable $mapper - Function to call on the wrapped value
+     *
+     * @return OptionInterface - The newly produced `Some` or `None`
      */
     public function map($mapper);
 
@@ -98,10 +102,11 @@ interface OptionInterface
      * This method takes a callable type that takes the wrapped value of the
      * current `Some` as it's arguments and returns an `Option` type. The
      * `Option` type returned by the passed in callable is returned by this
-     * method. If this is `None`, it behaves just like Option#map()
+     * method. If this is `None`, it behaves just like Option#map().
      *
-     * @param Callable $flatMapper - Fuction to call on the wrapped value
-     * @return OptionInterface              - The new `Option`
+     * @param callable $flatMapper - Fuction to call on the wrapped value
+     *
+     * @return OptionInterface - The new `Option`
      */
     public function flatMap($flatMapper);
 
@@ -110,10 +115,11 @@ interface OptionInterface
      * value of the current `Some` as it's argument. If the predicate returns
      * true the current `Some` is returned. If the predicate returns false
      * a new `None` is returned. If this is a `None` the predicate is never
-     * evaluated and `None` is returned immediately
+     * evaluated and `None` is returned immediately.
      *
-     * @param Callable $predicate - The predicate to check the wrapped value
-     * @return OptionInterface             - `Some` on success `None` on failure
+     * @param callable $predicate - The predicate to check the wrapped value
+     *
+     * @return OptionInterface - `Some` on success `None` on failure
      */
     public function filter($predicate);
 }

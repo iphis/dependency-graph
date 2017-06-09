@@ -11,7 +11,7 @@ class Left implements EitherInterface
     private $_value = null;
 
     /**
-     * Value constructor that wraps the value
+     * Value constructor that wraps the value.
      *
      * @param mixed $value - The value to wrap
      */
@@ -21,7 +21,7 @@ class Left implements EitherInterface
     }
 
     /**
-     * Returns true
+     * Returns true.
      *
      * @return bool
      */
@@ -31,7 +31,7 @@ class Left implements EitherInterface
     }
 
     /**
-     * Returns false
+     * Returns false.
      *
      * @return bool
      */
@@ -41,11 +41,12 @@ class Left implements EitherInterface
     }
 
     /**
-     * Calls the `$leftCase` with the wrapped value and returns the result
+     * Calls the `$leftCase` with the wrapped value and returns the result.
      *
-     * @param Callable $leftCase - Callable for left case
-     * @param Callable $rightCase - Callable for right case
-     * @return mixed              - Whatever the ran case returns
+     * @param callable $leftCase  - Callable for left case
+     * @param callable $rightCase - Callable for right case
+     *
+     * @return mixed - Whatever the ran case returns
      */
     public function fold($leftCase, $rightCase)
     {
@@ -53,11 +54,13 @@ class Left implements EitherInterface
     }
 
     /**
-     * Returns `$this` imediately
+     * Returns `$this` imediately.
      *
-     * @param Callable $mapper - The mapper to ignore
-     * @return EitherInterface          - This instance
+     * @param callable $mapper - The mapper to ignore
+     *
      * @throws \Exception
+     *
+     * @return EitherInterface - This instance
      */
     public function map($mapper)
     {
@@ -69,11 +72,13 @@ class Left implements EitherInterface
     }
 
     /**
-     * Returns `$this` imediately
+     * Returns `$this` imediately.
      *
-     * @param Callable $flatMapper - Flat mapper to ignore
-     * @return EitherInterface              - This instance
+     * @param callable $flatMapper - Flat mapper to ignore
+     *
      * @throws \Exception
+     *
+     * @return EitherInterface - This instance
      */
     public function flatMap($flatMapper)
     {
@@ -105,7 +110,7 @@ class Left implements EitherInterface
     }
 
     /**
-     * Returns this `Left` as a `Right`
+     * Returns this `Left` as a `Right`.
      *
      * @return EitherInterface - The left transformed to a `Right`
      */

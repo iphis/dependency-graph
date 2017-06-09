@@ -21,6 +21,7 @@ class Nodes
 
     /**
      * @param Node $node
+     *
      * @return bool
      */
     public function hasSibling(DependencyGraph\Node $node)
@@ -30,6 +31,7 @@ class Nodes
 
     /**
      * @param Node $node
+     *
      * @return bool
      */
     public function addSibling(Node $node)
@@ -45,14 +47,15 @@ class Nodes
 
     /**
      * @param Node $node
+     *
      * @return Option\OptionInterface
      */
     public function getSibling(DependencyGraph\Node $node)
     {
         return $this->_siblings->findValue(
             function ($value, $key) use ($node) {
-                /** @var Node $value */
-                return $value->getName() == $node->getName();
+                /* @var Node $value */
+                return $value->getName() === $node->getName();
             }
         );
     }
@@ -67,7 +70,7 @@ class Nodes
 
     public function hasDependency(DependencyGraph\Node $node)
     {
-        return ($this->getDependencyNodes($node)->length() !== 0);
+        return $this->getDependencyNodes($node)->length() !== 0;
     }
 
     public function addDependency(
@@ -76,7 +79,7 @@ class Nodes
     ) {
         $this->getDependencyNodes($parent)->each(
             function ($val, $k) use ($node) {
-                /** @var Node $val */
+                /* @var Node $val */
                 $val->addDependency($node);
             }
         );
@@ -84,6 +87,7 @@ class Nodes
 
     /**
      * @param Node $node
+     *
      * @return Map
      */
     public function getDependencyNodes(Node $node)
@@ -94,8 +98,8 @@ class Nodes
             $init,
             function ($memo, $n) use ($node) {
                 /** @var Node $n */
-                /** @var Map $memo */
-                if ($n->getName() == $node->getName()) {
+                /* @var Map $memo */
+                if ($n->getName() === $node->getName()) {
                     $memo->push($node);
                 } else {
                     $memo = $memo->merge($n->getDependencyNodes($node));
@@ -113,7 +117,7 @@ class Nodes
     {
         return $this->_siblings->map(
             function ($value, $key) {
-                /** @var Node $value */
+                /* @var Node $value */
                 return $value->toArray();
             }
         )->toArray();
@@ -126,7 +130,7 @@ class Nodes
     {
         $siblings = $this->_siblings->map(
             function ($value, $key) {
-                /** @var Node $value */
+                /* @var Node $value */
                 return $value->flatten();
             }
         )->toArray();
@@ -136,7 +140,7 @@ class Nodes
             function ($memo, $sibling) {
                 return array_merge($memo, $sibling);
             },
-            []
+            array()
         );
     }
 }

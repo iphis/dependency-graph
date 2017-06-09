@@ -43,7 +43,7 @@ class Node
     {
         $dependencies = $this->_dependencies->toArray();
         if (count($dependencies)) {
-            $memo = [];
+            $memo = array();
             $memo[$this->_name] = $dependencies;
 
             return $memo;
@@ -55,7 +55,7 @@ class Node
     public function flatten()
     {
         $dependencies = $this->_dependencies->flatten();
-        $memo = [];
+        $memo = array();
         $memo[$this->_name] = 1;
 
         if (count($dependencies)) {
