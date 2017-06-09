@@ -60,10 +60,11 @@ class Some implements OptionInterface
     /**
      * This function will return the wrapped value if the `Option` type is
      * `Some` and if it's `None` it will return `$default` instead. Seeing how
-     * this is the `Some` class, this will always return the wrapped value
+     * this is the `Some` class, this will always return the wrapped value.
      *
      * @param mixed $default - The default value if no value is present
-     * @return mixed         - The wrapped value
+     *
+     * @return mixed - The wrapped value
      */
     public function getOrElse($default)
     {
@@ -75,9 +76,11 @@ class Some implements OptionInterface
      * this `Option` type is `None` it returns the evalutated alternative type.
      * However, this is the `Some` class so it will always return itself.
      *
-     * @param Callable|OptionInterface $alternative - The alternative Option
-     * @return OptionInterface                      - Always returns itself
+     * @param callable|OptionInterface $alternative - The alternative Option
+     *
      * @throws Exception
+     *
+     * @return OptionInterface - Always returns itself
      */
     public function orElse($alternative)
     {
@@ -94,7 +97,7 @@ class Some implements OptionInterface
      * For those moments when you just need either a value or null. This
      * function returns the wrapped value when called on the `Some` class and
      * returns null when called on the `None` class. This is the `Some` class
-     * so it will always return the wrapped value
+     * so it will always return the wrapped value.
      *
      * @return mixed - The wrapped value or null
      */
@@ -106,8 +109,9 @@ class Some implements OptionInterface
     /**
      * This returns the wrappd value as a `Left` projection.
      *
-     * @param Callable|mixed $right - The alternative `Right` value
-     * @return EitherInterface               - The `Left` projection
+     * @param callable|mixed $right - The alternative `Right` value
+     *
+     * @return EitherInterface - The `Left` projection
      */
     public function toLeft($right)
     {
@@ -117,8 +121,9 @@ class Some implements OptionInterface
     /**
      * This returns the wrapped value as a `Right` projection.
      *
-     * @param Callable|mixed $left - The alternative `Left` value
-     * @return EitherInterface             - The `Right` projection
+     * @param callable|mixed $left - The alternative `Left` value
+     *
+     * @return EitherInterface - The `Right` projection
      */
     public function toRight($left)
     {
@@ -134,9 +139,11 @@ class Some implements OptionInterface
      * be called and instead we return `None` immediately. This is the `Some`
      * class, so it will always call the function and always return `Some`.
      *
-     * @param Callable $mapper - Function to call on the wrapped value
-     * @return OptionInterface          - The newly produced Some
+     * @param callable $mapper - Function to call on the wrapped value
+     *
      * @throws Exception
+     *
+     * @return OptionInterface - The newly produced Some
      */
     public function map($mapper)
     {
@@ -144,18 +151,20 @@ class Some implements OptionInterface
             throw new Exception("Can't call Some#map with a non callable.");
         }
 
-        return new Some($mapper($this->_value));
+        return new self($mapper($this->_value));
     }
 
     /**
      * This method takes a callable type that takes the wrapped value of the
      * current `Some` as it's arguments and returns an `Option` type. The
      * `Option` type returned by the passed in callable is returned by this
-     * method
+     * method.
      *
-     * @param Callable $flatMapper - Fuction to call on the wrapped value
-     * @return OptionInterface              - The `Option` produced by the flat mapper
+     * @param callable $flatMapper - Fuction to call on the wrapped value
+     *
      * @throws Exception
+     *
+     * @return OptionInterface - The `Option` produced by the flat mapper
      */
     public function flatMap($flatMapper)
     {
@@ -165,7 +174,7 @@ class Some implements OptionInterface
         $flatMapped = $flatMapper($this->_value);
         if (!($flatMapped instanceof OptionInterface)) {
             throw new Exception(
-                "Function passed to Some#flatMap must retrun Option"
+                'Function passed to Some#flatMap must retrun Option'
             );
         }
 
@@ -178,9 +187,11 @@ class Some implements OptionInterface
      * true the current `Some` is returned. If the predicate returns false
      * a new `None` is returned.
      *
-     * @param Callable $predicate - The predicate to check the wrapped value
-     * @return OptionInterface             - `Some` on success `None` on failure
+     * @param callable $predicate - The predicate to check the wrapped value
+     *
      * @throws Exception
+     *
+     * @return OptionInterface - `Some` on success `None` on failure
      */
     public function filter($predicate)
     {

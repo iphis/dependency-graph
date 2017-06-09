@@ -6,14 +6,13 @@ use Exception;
 use iphis\DependencyGraph\Map;
 
 /**
- * Class EitherUtil
- *
- * @package PlasmaConduit\either
+ * Class EitherUtil.
  */
 class EitherUtil
 {
     /**
      * @param $map
+     *
      * @return mixed
      */
     public static function lefts($map)
@@ -29,6 +28,7 @@ class EitherUtil
 
     /**
      * @param $map
+     *
      * @return mixed
      */
     public static function rights($map)
@@ -44,6 +44,7 @@ class EitherUtil
 
     /**
      * @param $map
+     *
      * @return mixed
      */
     public static function partition($map)
@@ -59,8 +60,10 @@ class EitherUtil
 
     /**
      * @param $map
-     * @return Map
+     *
      * @throws \Exception
+     *
+     * @return Map
      */
     private static function _ensureMap($map)
     {
@@ -68,7 +71,7 @@ class EitherUtil
             return new Map($map);
         }
         if (!($map instanceof Map)) {
-            throw new Exception("EitherUtil methods require map or array");
+            throw new Exception('EitherUtil methods require map or array');
         }
 
         return $map;

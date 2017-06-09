@@ -12,7 +12,7 @@ class Right implements EitherInterface
     private $_value = null;
 
     /**
-     * Value constructor that wraps the value
+     * Value constructor that wraps the value.
      *
      * @param mixed $value - The value to wrap
      */
@@ -22,7 +22,7 @@ class Right implements EitherInterface
     }
 
     /**
-     * Returns false
+     * Returns false.
      *
      * @return bool
      */
@@ -32,7 +32,7 @@ class Right implements EitherInterface
     }
 
     /**
-     * Returns true
+     * Returns true.
      *
      * @return bool
      */
@@ -42,11 +42,12 @@ class Right implements EitherInterface
     }
 
     /**
-     * Calls the `$rightCase` with the wrapped value and returns the result
+     * Calls the `$rightCase` with the wrapped value and returns the result.
      *
-     * @param Callable } $leftCase  - Callable for left case
-     * @param Callable } $rightCase - Callable for right case
-     * @return mixed               - Whatever the ran case returns
+     * @param callable } $leftCase  - Callable for left case
+     * @param callable } $rightCase - Callable for right case
+     *
+     * @return mixed - Whatever the ran case returns
      */
     public function fold($leftCase, $rightCase)
     {
@@ -55,11 +56,13 @@ class Right implements EitherInterface
 
     /**
      * Applies the `$mapper` to the wrapped inner value of this `Right`
-     * and returns a new `Right`
+     * and returns a new `Right`.
      *
-     * @param Callable $mapper - The mapper to apply
-     * @return EitherInterface          - The new `Right` value
+     * @param callable $mapper - The mapper to apply
+     *
      * @throws Exception
+     *
+     * @return EitherInterface - The new `Right` value
      */
     public function map($mapper)
     {
@@ -67,16 +70,18 @@ class Right implements EitherInterface
             throw new Exception("Can't call Right#map with non callable.");
         }
 
-        return new Right($mapper($this->_value));
+        return new self($mapper($this->_value));
     }
 
     /**
      * Applies the `$flatMapper` to the wrapped inner value of this `Right`.
      * The flat mapper must return an `Either` type.
      *
-     * @param Callable $flatMapper - Callable to apply on the inner value
-     * @return EitherInterface              - The result of the flat map
+     * @param callable $flatMapper - Callable to apply on the inner value
+     *
      * @throws Exception
+     *
+     * @return EitherInterface - The result of the flat map
      */
     public function flatMap($flatMapper)
     {
@@ -86,7 +91,7 @@ class Right implements EitherInterface
         $flatMapped = $flatMapper($this->_value);
         if (!($flatMapped instanceof EitherInterface)) {
             throw new Exception(
-                "Function passed to Right#flatMap must return Either"
+                'Function passed to Right#flatMap must return Either'
             );
         }
 
@@ -114,7 +119,7 @@ class Right implements EitherInterface
     }
 
     /**
-     * Returns this `Right` as a `Left`
+     * Returns this `Right` as a `Left`.
      *
      * @return EitherInterface - The left transformed to a `Left`
      */

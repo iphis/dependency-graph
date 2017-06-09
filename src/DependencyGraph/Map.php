@@ -8,9 +8,7 @@ use iphis\DependencyGraph\Option\OptionInterface;
 use iphis\DependencyGraph\Option\Some;
 
 /**
- * Class Map
- *
- * @package PlasmaConduit
+ * Class Map.
  */
 class Map
 {
@@ -21,7 +19,7 @@ class Map
 
     /**
      * This is a convenience constructor for setting the initial
-     * state of the `Map`
+     * state of the `Map`.
      *
      * @param array $value - The initial array to set the `Map` to
      */
@@ -36,6 +34,7 @@ class Map
      * this function returns a `iphis\DependencyGraph\Option\None` instead.
      *
      * @param mixed $key - The key of the value to fetch
+     *
      * @return OptionInterface - A `Some` w\ value or `None`
      */
     public function get($key)
@@ -51,9 +50,10 @@ class Map
      * If `$key` exists it returns the corresponding value otherwise it
      * returns `$alternative`.
      *
-     * @param mixed $key - The key to fetch the value for
+     * @param mixed          $key         - The key to fetch the value for
      * @param callable|mixed $alternative - The alternative value to return
-     * @return mixed                      - The value or the alternative
+     *
+     * @return mixed - The value or the alternative
      */
     public function getOrElse($key, $alternative)
     {
@@ -61,11 +61,12 @@ class Map
     }
 
     /**
-     * Sets the `$key` to `$value`
+     * Sets the `$key` to `$value`.
      *
-     * @param mixed $key - The key to set
+     * @param mixed $key   - The key to set
      * @param mixed $value - The value to set the key to
-     * @return mixed       - The set value
+     *
+     * @return mixed - The set value
      */
     public function set($key, $value)
     {
@@ -75,9 +76,10 @@ class Map
     }
 
     /**
-     * Unsets the value for the specified key
+     * Unsets the value for the specified key.
      *
      * @param mixed $key - The key to unset
+     *
      * @return void
      */
     public function remove($key)
@@ -88,10 +90,11 @@ class Map
     }
 
     /**
-     * Verifies the existence of `$key` in this `Map`
+     * Verifies the existence of `$key` in this `Map`.
      *
      * @param mixed $key - The key to check for existence
-     * @return bool      - True on existence, False otherwise
+     *
+     * @return bool - True on existence, False otherwise
      */
     public function exists($key)
     {
@@ -99,9 +102,10 @@ class Map
     }
 
     /**
-     * Pushes a value to the end of the map
+     * Pushes a value to the end of the map.
      *
      * @param mixed - The value to push to the map
+     *
      * @return void
      */
     public function push($value)
@@ -110,7 +114,7 @@ class Map
     }
 
     /**
-     * Pops a value off the end of the map
+     * Pops a value off the end of the map.
      *
      * @return mixed - The value popped of the end of the map
      */
@@ -120,7 +124,7 @@ class Map
     }
 
     /**
-     * Returns the current count of items in the `Map`
+     * Returns the current count of items in the `Map`.
      *
      * @return int - The count of items in the `Map`
      */
@@ -130,7 +134,7 @@ class Map
     }
 
     /**
-     * Returns the keys of all items in the `Map`
+     * Returns the keys of all items in the `Map`.
      *
      * @return array - An array of the keys in the map
      */
@@ -140,7 +144,7 @@ class Map
     }
 
     /**
-     * Returns the values of all items in the `Map`
+     * Returns the values of all items in the `Map`.
      *
      * @return array - An array of all the values in the map
      */
@@ -150,9 +154,10 @@ class Map
     }
 
     /**
-     * This returns the first value that satisfies the predicate
+     * This returns the first value that satisfies the predicate.
      *
-     * @param Callable $predicate - The predicate to test for
+     * @param callable $predicate - The predicate to test for
+     *
      * @return OptionInterface
      */
     public function findValue($predicate)
@@ -167,9 +172,10 @@ class Map
     }
 
     /**
-     * This returns the first key that satisfies the predicate
+     * This returns the first key that satisfies the predicate.
      *
-     * @param Callable $predicate - The predicate to test for
+     * @param callable $predicate - The predicate to test for
+     *
      * @return OptionInterface
      */
     public function findKey($predicate)
@@ -184,7 +190,7 @@ class Map
     }
 
     /**
-     * This just returns the array representation of the `Map`
+     * This just returns the array representation of the `Map`.
      *
      * @return array - The array representation
      */
@@ -195,11 +201,13 @@ class Map
 
     /**
      * Maps the supplied mapper function across the entire collection producing
-     * new `Map` data structure
+     * new `Map` data structure.
      *
-     * @param Callable $mapper - The mapper to apply
-     * @return Map             - The transformed `Map`
+     * @param callable $mapper - The mapper to apply
+     *
      * @throws Exception
+     *
+     * @return Map - The transformed `Map`
      */
     public function map($mapper)
     {
@@ -208,7 +216,7 @@ class Map
         }
 
         return $this->reduce(
-            new Map(),
+            new self(),
             function (Map $m, $v, $k) use ($mapper) {
                 $m->set($k, $mapper($v, $k));
 
@@ -218,12 +226,14 @@ class Map
     }
 
     /**
-     * Reduces the collection with the supplied `$reducer`
+     * Reduces the collection with the supplied `$reducer`.
      *
      * @param mixed $initial - The initial value of the reduction
      * @param $reducer
-     * @return Map           - The transformed `Map`
+     *
      * @throws Exception
+     *
+     * @return Map - The transformed `Map`
      */
     public function reduce($initial, $reducer)
     {
@@ -242,11 +252,13 @@ class Map
 
     /**
      * Applies the `$predicate` to the entire collection keeping those that
-     * pass and discarding those that fail
+     * pass and discarding those that fail.
      *
-     * @param Callable $predicate - The predicate to test for
-     * @return Map                - A filtered `Map`
+     * @param callable $predicate - The predicate to test for
+     *
      * @throws Exception
+     *
+     * @return Map - A filtered `Map`
      */
     public function filter($predicate)
     {
@@ -255,9 +267,9 @@ class Map
         }
 
         return $this->reduce(
-            new Map(),
+            new self(),
             function ($m, $v, $k) use ($predicate) {
-                /** @var Map $m */
+                /* @var Map $m */
                 if ($predicate($v, $k)) {
                     $m->set($k, $v);
                 }
@@ -271,9 +283,11 @@ class Map
      * Returns a tuple of `Map`s where the first one are all elements
      * that satisfy `$predicate` and the other are the remainder.
      *
-     * @param Callable $predicate - The predicate to test for
-     * @return Map
+     * @param callable $predicate - The predicate to test for
+     *
      * @throws Exception
+     *
+     * @return Map
      */
     public function partition($predicate)
     {
@@ -282,12 +296,12 @@ class Map
                 "Can't call Map#partition() with non callable."
             );
         }
-        $init = new Map([new Map(), new Map()]);
+        $init = new self(array(new self(), new self()));
 
         return $this->reduce(
             $init,
             function ($m, $v, $k) use ($predicate) {
-                /** @var Map $m */
+                /* @var Map $m */
                 if ($predicate($v, $k)) {
                     $m->get(0)->get()->set($k, $v);
                 } else {
@@ -301,11 +315,13 @@ class Map
 
     /**
      * Returns a map of maps such that each map is representative of
-     * the group set by the identifier on each element
+     * the group set by the identifier on each element.
      *
-     * @param Callable $identifier - The identifier to group elements
-     * @return Map
+     * @param callable $identifier - The identifier to group elements
+     *
      * @throws Exception
+     *
+     * @return Map
      */
     public function groupBy($identifier)
     {
@@ -314,7 +330,7 @@ class Map
                 "Can't call Map#groupBy() with non callable"
             );
         }
-        $init = new Map();
+        $init = new self();
 
         return $this->reduce(
             $init,
@@ -335,9 +351,10 @@ class Map
     }
 
     /**
-     * Calls the `$itterator` on every element in the collection
+     * Calls the `$itterator` on every element in the collection.
      *
      * @param $itterator
+     *
      * @throws \Exception
      */
     public function each($itterator)
@@ -355,11 +372,12 @@ class Map
      * and the one passed in.
      *
      * @param Map $other - The other map to get the difference from.
-     * @return Map       - The calculated `Map`
+     *
+     * @return Map - The calculated `Map`
      */
     public function differenceKey(Map $other)
     {
-        return new Map(array_diff_key($this->_value, $other->toArray()));
+        return new self(array_diff_key($this->_value, $other->toArray()));
     }
 
     /**
@@ -367,11 +385,12 @@ class Map
      * and the one passed in.
      *
      * @param Map $other - The other map to get the difference from.
-     * @return Map       - The calculated `Map`
+     *
+     * @return Map - The calculated `Map`
      */
     public function difference(Map $other)
     {
-        return new Map(array_diff($this->_value, $other->toArray()));
+        return new self(array_diff($this->_value, $other->toArray()));
     }
 
     /**
@@ -379,11 +398,12 @@ class Map
      * and the one passed in.
      *
      * @param Map $other - The other map to calculate the intersection from
-     * @return Map       - The calculated `Map`
+     *
+     * @return Map - The calculated `Map`
      */
     public function intersectionKey(Map $other)
     {
-        return new Map(array_intersect_key($this->_value, $other->toArray()));
+        return new self(array_intersect_key($this->_value, $other->toArray()));
     }
 
     /**
@@ -391,22 +411,24 @@ class Map
      * passed in.
      *
      * @param Map $other - The other map to calculate the intersection from
-     * @return Map       - The calculated `Map`
+     *
+     * @return Map - The calculated `Map`
      */
     public function intersection(Map $other)
     {
-        return new Map(array_intersect($this->_value, $other->toArray()));
+        return new self(array_intersect($this->_value, $other->toArray()));
     }
 
     /**
-     * Returns a new `Map` which is a merger of this `Map` and the one pased in
+     * Returns a new `Map` which is a merger of this `Map` and the one pased in.
      *
      * @param Map $other
+     *
      * @return Map
      */
     public function merge(Map $other)
     {
-        return new Map(array_merge($this->_value, $other->toArray()));
+        return new self(array_merge($this->_value, $other->toArray()));
     }
 
     /**
@@ -420,7 +442,7 @@ class Map
         $newMap = $this->_value;
         sort($newMap);
 
-        return new Map($newMap);
+        return new self($newMap);
     }
 
     /**
@@ -434,26 +456,28 @@ class Map
         $newMap = $this->_value;
         ksort($newMap);
 
-        return new Map($newMap);
+        return new self($newMap);
     }
 
     /**
      * This function recursively traverses an array and transforms all
-     * child encountered arrays into Maps
+     * child encountered arrays into Maps.
      *
      * @param Map|array $array - An array or map to mappify
-     * @return Map             - The new deeply mappified map
+     *
      * @throws Exception
+     *
+     * @return Map - The new deeply mappified map
      */
     public static function mappify($array)
     {
         if (!is_array($array)) {
             throw new Exception("Can't call mappify with non array.");
         }
-        $map = new Map($array);
+        $map = new self($array);
 
         return $map->reduce(
-            new Map(),
+            new self(),
             function (Map $map, $value, $key) {
                 if (is_array($value)) {
                     $map->set($key, self::mappify($value));
