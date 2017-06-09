@@ -3,6 +3,9 @@ Dependency Graph
 A dependency graph implementation.
 Derived from the Work of JosephMoniz (plasmaconduit/dependency-graph).
 
+[![Build Status](https://travis-ci.org/iphis/dependency-graph.svg?branch=master)](https://travis-ci.org/iphis/dependency-graph)
+[![StyleCI](https://styleci.io/repos/93886535/shield?branch=master)](https://styleci.io/repos/93886535)
+
 Examples
 --------
 ```php
