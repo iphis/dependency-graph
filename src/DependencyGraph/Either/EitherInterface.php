@@ -1,5 +1,6 @@
 <?php
-namespace Iphis\Utility\DependencyGraph\Either;
+
+namespace iphis\DependencyGraph\Either;
 
 interface EitherInterface
 {
@@ -55,7 +56,7 @@ interface EitherInterface
      * So if this is type `Left` it returns `Some($value)` but if this is
      * `Right` it returns `None`
      *
-     * @return \Iphis\Utility\DependencyGraph\Option\OptionInterface
+     * @return \iphis\DependencyGraph\Option\OptionInterface
      */
     public function left();
 
@@ -64,7 +65,7 @@ interface EitherInterface
      * type. So if this is type `Right` it returns `Some($value)` but if this is
      * `Left` it returns `None`
      *
-     * @return \Iphis\Utility\DependencyGraph\Option\OptionInterface
+     * @return \iphis\DependencyGraph\Option\OptionInterface
      */
     public function right();
 

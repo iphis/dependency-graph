@@ -1,8 +1,9 @@
 <?php
-namespace Iphis\Utility\DependencyGraph\Either;
+
+namespace iphis\DependencyGraph\Either;
 
 use Exception;
-use Iphis\Utility\DependencyGraph\Map;
+use iphis\DependencyGraph\Map;
 
 /**
  * Class EitherUtil

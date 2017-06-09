@@ -1,10 +1,11 @@
 <?php
-namespace Iphis\Utility\DependencyGraph\Either;
+
+namespace iphis\DependencyGraph\Either;
 
 use Exception;
-use Iphis\Utility\DependencyGraph\Option\None;
-use Iphis\Utility\DependencyGraph\Option\OptionInterface;
-use Iphis\Utility\DependencyGraph\Option\Some;
+use iphis\DependencyGraph\Option\None;
+use iphis\DependencyGraph\Option\OptionInterface;
+use iphis\DependencyGraph\Option\Some;
 
 class Right implements EitherInterface
 {

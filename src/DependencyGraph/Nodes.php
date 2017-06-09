@@ -1,7 +1,8 @@
 <?php
-namespace Iphis\Utility\DependencyGraph;
 
-use Iphis\Utility\DependencyGraph;
+namespace iphis\DependencyGraph;
+
+use iphis\DependencyGraph;
 
 class Nodes
 {
@@ -66,7 +67,7 @@ class Nodes
 
     public function hasDependency(DependencyGraph\Node $node)
     {
-        return $this->getDependencyNodes($node)->length() !== 0;
+        return ($this->getDependencyNodes($node)->length() !== 0);
     }
 
     public function addDependency(

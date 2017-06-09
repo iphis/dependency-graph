@@ -1,11 +1,13 @@
 <?php
-namespace Iphis\Utility;
 
-use Iphis\Utility\DependencyGraph\Node;
-use Iphis\Utility\DependencyGraph\Nodes;
-use Iphis\Utility\DependencyGraph\Either\Left;
-use Iphis\Utility\DependencyGraph\Either\Right;
-use Iphis\Utility\DependencyGraph\Map;
+namespace iphis;
+
+use iphis\DependencyGraph\Either\Right;
+use iphis\DependencyGraph\Exceptions\CircularDependencyException;
+use iphis\DependencyGraph\Exceptions\NoParentException;
+use iphis\DependencyGraph\Map;
+use iphis\DependencyGraph\Node;
+use iphis\DependencyGraph\Nodes;
 
 class DependencyGraph
 {
@@ -50,10 +52,10 @@ class DependencyGraph
 
                 return new Right(true);
             } else {
-                return new Left("Parent node not present in graph.");
+                throw new NoParentException("Parent node not present in graph.");
             }
         } else {
-            return new Left("Refusing to add circular dependency.");
+            throw new CircularDependencyException("Refusing to add circular dependency.");
         }
     }
 
@@ -78,6 +80,6 @@ class DependencyGraph
     ) {
         $node = $this->_registry->get($node->getName());
 
-        return $node->nonEmpty() && $node->get()->hasDependency($parent);
+        return ($node->nonEmpty() && $node->get()->hasDependency($parent));
     }
 }

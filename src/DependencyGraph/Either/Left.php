@@ -1,9 +1,10 @@
 <?php
-namespace Iphis\Utility\DependencyGraph\Either;
 
-use Iphis\Utility\DependencyGraph\Option\None;
-use Iphis\Utility\DependencyGraph\Option\OptionInterface;
-use Iphis\Utility\DependencyGraph\Option\Some;
+namespace iphis\DependencyGraph\Either;
+
+use iphis\DependencyGraph\Option\None;
+use iphis\DependencyGraph\Option\OptionInterface;
+use iphis\DependencyGraph\Option\Some;
 
 class Left implements EitherInterface
 {

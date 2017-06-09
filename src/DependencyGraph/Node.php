@@ -1,5 +1,6 @@
 <?php
-namespace Iphis\Utility\DependencyGraph;
+
+namespace iphis\DependencyGraph;
 
 class Node
 {

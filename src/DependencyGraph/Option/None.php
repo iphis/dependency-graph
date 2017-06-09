@@ -1,10 +1,11 @@
 <?php
-namespace Iphis\Utility\DependencyGraph\Option;
+
+namespace iphis\DependencyGraph\Option;
 
 use Exception;
-use Iphis\Utility\DependencyGraph\Either\EitherInterface;
-use Iphis\Utility\DependencyGraph\Either\Left;
-use Iphis\Utility\DependencyGraph\Either\Right;
+use iphis\DependencyGraph\Either\EitherInterface;
+use iphis\DependencyGraph\Either\Left;
+use iphis\DependencyGraph\Either\Right;
 
 /**
  * Class None

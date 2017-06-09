@@ -1,15 +1,15 @@
 Dependency Graph
 ================
 A dependency graph implementation.
-Derived from the Work of JosephMoniz in Iphis\Utility\DependencyGraph.
+Derived from the Work of JosephMoniz (plasmaconduit/dependency-graph).
 
 Examples
 --------
 ```php
 <?php
-use Iphis\Utility\DependencyGraph;
-use Iphis\Utility\DependencyGraph\Node;
-use Iphis\Utility\DependencyGraph\Nodes;
+use iphis\DependencyGraph;
+use iphis\DependencyGraph\Node;
+use iphis\DependencyGraph\Nodes;
 
 // Initialize the graph and some stand alone nodes
 $graph = new DependencyGraph();

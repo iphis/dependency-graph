@@ -1,10 +1,11 @@
 <?php
-namespace Iphis\Utility\DependencyGraph;
+
+namespace iphis\DependencyGraph;
 
 use Exception;
-use Iphis\Utility\DependencyGraph\Option\None;
-use Iphis\Utility\DependencyGraph\Option\OptionInterface;
-use Iphis\Utility\DependencyGraph\Option\Some;
+use iphis\DependencyGraph\Option\None;
+use iphis\DependencyGraph\Option\OptionInterface;
+use iphis\DependencyGraph\Option\Some;
 
 /**
  * Class Map
@@ -30,9 +31,9 @@ class Map
     }
 
     /**
-     * This function returns a `Plasmaconduit\option\Some` containing the
+     * This function returns a `iphis\DependencyGraph\Option\Some` containing the
      * the value of the key specified if it exists. If the key doesn't exist
-     * this function returns a `Iphis\Utility\DependencyGraph\Option\None` instead.
+     * this function returns a `iphis\DependencyGraph\Option\None` instead.
      *
      * @param mixed $key - The key of the value to fetch
      * @return OptionInterface - A `Some` w\ value or `None`

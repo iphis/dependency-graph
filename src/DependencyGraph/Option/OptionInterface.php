@@ -1,5 +1,6 @@
 <?php
-namespace Iphis\Utility\DependencyGraph\Option;
+
+namespace iphis\DependencyGraph\Option;
 
 use Exception;
 
@@ -66,7 +67,7 @@ interface OptionInterface
      * evaluated value of `$right`.
      *
      * @param Callable|mixed $right - The alternative `Right` projection
-     * @return \Iphis\Utility\DependencyGraph\Either\EitherInterface               - The projected `Either` value
+     * @return \iphis\DependencyGraph\Either\EitherInterface               - The projected `Either` value
      */
     public function toLeft($right);
 
@@ -76,7 +77,7 @@ interface OptionInterface
      * evaluated value of `$left`.
      *
      * @param Callable|mixed $left - The alternative `Left` projection
-     * @return \Iphis\Utility\DependencyGraph\Either\EitherInterface              - The projected `Either` value
+     * @return \iphis\DependencyGraph\Either\EitherInterface              - The projected `Either` value
      */
     public function toRight($left);
 
